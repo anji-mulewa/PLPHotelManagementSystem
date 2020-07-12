@@ -1,0 +1,14 @@
+mat-toolbar{
+    background-color:  rgb(23, 194, 194);
+}
+mat-sidenav{
+    background-color: rgb(23, 194, 194);
+}
+a:hover {
+    background: white;
+    border-radius: 50% 0% 50%;
+    transition:0.5s;
+}
+mat-nav-list {
+    padding: 0% !important;
+}

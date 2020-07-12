@@ -1,0 +1,129 @@
+<div class="col-md-6 offset-md-3 mt-5 card card-body border border-dark" *ngIf="employeeInfoForUpdate">
+    <h4 class="text-center">
+        Update Employee
+    </h4>   
+    <hr>
+    <form #updateEmployee='ngForm' (ngSubmit)='updateEmployeeInfo(updateEmployee)'>
+        <input type="hidden" name="employeeId" #employeeId='ngModel' [(ngModel)]='employeeInfoForUpdate.employeeId'>
+        <input type="hidden" name="licenceNumber" #licenceNumber='ngModel' [(ngModel)]='employeeInfoForUpdate.licenceNumber'>
+        <input type="hidden" name="hotelId" #hotelId='ngModel' [(ngModel)]='employeeInfoForUpdate.hotelId'>
+        <input type="hidden" name="hotelName" #hotelName='ngModel' [(ngModel)]='employeeInfoForUpdate.hotelName'>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">
+                        name:
+                    </label>
+                    <input type="text" name="name" class="form-control" #name="ngModel" ngModel
+                    pattern="^[[A-Z]|[a-z]][[A-Z]|[a-z]|\\d|[_]]{7,29}$"   required  [(ngModel)]="employeeInfoForUpdate.name">
+                    <div *ngIf='name.touched && name.invalid'>
+                        <p class="text-danger" *ngIf='name.errors.required'>
+                            *This field is mandatory
+                        </p>
+                        <p class="text-danger" *ngIf='name.errors.pattern'>
+                            *Dont Start Name with Number or Special Charactrer </p>
+                    </div>
+                </div>
+            </div>
+            <div  class="col">
+                <div class="form-group">
+                    <label for="email">
+                        email:
+                    </label>
+                    <input type="text" name="email" class="form-control" #email="ngModel" ngModel
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required  [(ngModel)]="employeeInfoForUpdate.email">
+                    <div *ngIf='email.touched && email.invalid'>
+                        <p class="text-danger" *ngIf='email.errors.required'>
+                            *This field is mandatory
+                        </p>
+                        <p class="text-danger" *ngIf='email.errors.pattern'>
+                            *Please Enter valid email id.It should contain @ and .
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="password">
+                        password:
+                    </label>
+                    <input type="text" name="password" class="form-control" #password="ngModel" ngModel
+                  required  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"   [(ngModel)]="employeeInfoForUpdate.password">
+                    <div *ngIf='password.touched && password.invalid'>
+                        <p class="text-danger" *ngIf='password.errors.required'>
+                            *This field is mandatory
+                        </p>
+                        <p class="text-danger" *ngIf='password.errors.pattern'>
+                            *Minimum eight characters, at least one uppercase letter, one lowercase letter, one
+                            number and
+                            one special character:
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="address">
+                        address:
+                    </label>
+                    <input type="text" name="address" class="form-control" #address="ngModel" ngModel
+                    required  [(ngModel)]="employeeInfoForUpdate.address" minlength="3">
+                    <div *ngIf='address.touched && address.invalid'>
+                        <p class="text-danger" *ngIf='address.errors.required'>
+                            *This field is mandatory
+                        </p>
+                        <p class="text-danger" *ngIf='address.errors.minlength'>
+                            *This field required minimum length is 3
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="contactNumber">
+                        contactNumber:
+                    </label>
+                    <input type="text" name="contactNumber" class="form-control" #contactNumber="ngModel" ngModel
+                    pattern="[7-9]{1}[0-9]{9}" required  id="contactNumber" [(ngModel)]="employeeInfoForUpdate.contactNumber">
+                    <div *ngIf='contactNumber.touched && contactNumber.invalid'>
+
+                        <p class="text-danger" *ngIf='contactNumber.errors.required'>
+                            This field is mandatory
+                        </p>
+                        <!-- <p class="alert alert-danger" *ngIf='mobileno.errors.minlength'>
+                please enter 10 digit number
+            </p> -->
+                        <p class="text-danger" *ngIf='contactNumber.errors.pattern'>
+                            please enter 10 digit valid number
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="nationality">
+                        nationality:
+                    </label>
+                    <input type="text" name="nationality" class="form-control" #nationality="ngModel" ngModel
+                        id="nationality" [(ngModel)]="employeeInfoForUpdate.nationality">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group float-right">
+            <button class="btn btn-outline-dark" type="reset">
+                Reset
+            </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-outline-dark" type="submit" [disabled]='updateEmployee.invalid'>
+                Update
+            </button>
+        </div>
+
+    </form>
+</div>

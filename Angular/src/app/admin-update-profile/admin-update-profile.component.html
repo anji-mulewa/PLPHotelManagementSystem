@@ -1,0 +1,130 @@
+<div class="col-md-6 offset-md-3 mt-5 card card-body border border-dark" *ngIf="employeeInfo">
+    <h4 class="text-center">
+        Update Profile
+    </h4>
+    <hr>
+    <form #updateProfile='ngForm' (ngSubmit)='updateProfileForm(updateProfile)'>
+        <input type="hidden" name="id" #id='ngModel' [(ngModel)]="employeeInfo.id">
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">
+                        Name:
+                    </label>
+                    <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="employeeInfo.name"
+                        required pattern="^[[A-Z]|[a-z]][[A-Z]|[a-z]|\\d|[_]]{7,29}$">
+                    <div *ngIf='name.touched && name.invalid'>
+                        <p class="text-danger" *ngIf='name.errors.required'>
+                            *This field is mandatory
+                        </p>
+                        <p class="text-danger" *ngIf='name.errors.pattern'>
+                            *Dont Start Name with Number or Special Charactrer </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="email">
+                        email:
+                    </label>
+                    <input type="email" name="email" class="form-control" #email="ngModel"
+                        [(ngModel)]="employeeInfo.email" email required
+                        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    <div *ngIf='email.touched && email.invalid'>
+                        <p class="alert alert-danger" *ngIf='email.errors.required'>
+                            THis field is mandatory
+                        </p>
+                        <p class="alert alert-danger" *ngIf='email.errors.email'>
+                            please enter valid email id
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="mobileno">
+                        mobileno:
+                    </label>
+                    <input type="number" name="contactNumber" class="form-control" #contactNumber="ngModel" required
+                        pattern="[7-9]{1}[0-9]{9}" [(ngModel)]="employeeInfo.contactNumber">
+
+                    <div *ngIf='contactNumber.touched && contactNumber.invalid'>
+
+                        <p class="text-danger" *ngIf='contactNumber.errors.required'>
+                            This field is mandatory
+                        </p>
+                       
+                        <p class="text-danger" *ngIf='contactNumber.errors.pattern'>
+                            please enter 10 digit valid number
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="password">
+                        password:
+                    </label>
+                    <input type="text" name="password" class="form-control" #password="ngModel"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required   [(ngModel)]="employeeInfo.password" required>
+                    <div *ngIf='password.touched && password.invalid'>
+                        <p class="text-danger" *ngIf='password.errors.required'>
+                            *This field is mandatory
+                        </p>
+                        <p class="text-danger" *ngIf='password.errors.pattern'>
+                            *Minimum eight characters, at least one uppercase letter, one lowercase letter, one
+                            number and
+                            one special character:
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="address">
+                        address:
+                    </label>
+                    <input type="text" name="address" class="form-control" #address="ngModel"
+                        [(ngModel)]="employeeInfo.address"  required minlength="3">
+                        <div *ngIf='address.touched && address.invalid'>
+                            <p class="text-danger" *ngIf='address.errors.required'>
+                                *This field is mandatory
+                            </p>
+                            <p class="text-danger" *ngIf='address.errors.minlength'>
+                                *This field required minimum length is 3
+                            </p>
+                        </div>
+
+                </div>
+            </div>
+
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="nationality">
+                        nationality:
+                    </label>
+                    <input type="text" name="nationality" class="form-control" #nationality="ngModel"
+                        [(ngModel)]="employeeInfo.nationality" required>
+
+                </div>
+            </div>
+        </div>
+        <div class="btn-group float-right">
+            <button class="btn btn-outline-dark" type="reset">
+                Reset
+            </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-outline-dark" type="submit" [disabled]='updateProfile.invalid'>
+                Update
+            </button>
+        </div>
+
+    </form>
+</div>
